@@ -139,3 +139,7 @@ Below softwares need to be installed in the system before running this applicati
     ```sh
     http://localhost:9091/engine-rest/engine
     ```
+- Camunda rest api authorization details are:
+    ```sh
+    demo/demo
+    ```
