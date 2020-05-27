@@ -10,7 +10,8 @@ This repository is for camunda springboot postgres integration with authorizatio
   
 ### Implementation
 
-- Main Class (Bootstrap)
+- Main Class (Bootstrap):
+
 	```sh
 	@SpringBootApplication
 	@EnableProcessApplication
@@ -24,6 +25,7 @@ This repository is for camunda springboot postgres integration with authorizatio
 	
 	```
 - Camunda Basic Authentication:
+
 	```sh
 	@Configuration
 	public class CamundaSecurityFilter {
@@ -45,7 +47,24 @@ This repository is for camunda springboot postgres integration with authorizatio
 	    return new ProcessEngineAuthenticationFilter();
 	  }
 	}
-	```  
+	```
+	
+- Process Deployment descriptor
+
+	```sh
+	<process-application xmlns="http://www.camunda.org/schema/1.0/ProcessApplication" 
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	  <process-archive>
+	    <resource>process.bpmn</resource>
+	    <properties>
+	      <property name="isDeleteUponUndeploy">false</property>
+	      <property name="isScanForProcessDefinitions">true</property>
+	    </properties>
+	  </process-archive>
+	
+	</process-application>
+	```	  
 
 ### Pre Requisites
 
