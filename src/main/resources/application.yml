@@ -1,0 +1,62 @@
+server:
+  port: 9091 
+
+spring:
+  application:
+    name: camundapostgres
+    
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/camundaworkflow
+    username: postgres
+    password: postgres
+    
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5432/camundaworkflow
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+      pool-name: HikariCP
+      idle-timeout: 3000
+      minimum-idle: 30
+      maximum-pool-size: 10
+      connection-timeout: 2000
+      connection-test-query: select 1
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED 
+      
+camunda:
+  bpm:
+    enabled: true
+    
+    #process-engine-name: andromeda
+    
+    admin-user:
+      id: demo
+      password: demo
+      email: ufo@andromeda.com
+      first-name: Andromeda
+      last-name: Galaxy
+      
+    database:
+      schema-update: true
+      
+    filter:
+      create: All
+      
+    authorization:
+      enabled: true
+    
+    history-level: full
+    
+    auto-deployment-enabled: true
+    
+    default-number-of-retries: 3
+    
+    job-execution:
+      enabled: true
+      
+    webapp:
+      application-path: /camundapostgres      
