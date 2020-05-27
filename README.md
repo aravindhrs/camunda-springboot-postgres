@@ -70,6 +70,11 @@ Below softwares need to be installed in the system before running this applicati
     ```
 - Import the project as existing maven project
 
+- Create an empty database in postgres with name camundaworkflow
+	```sh
+	CREATE DATABASE camundaworkflow;
+	```
+
 - Update the application.yml file for db credentials
     ```sh
     server:
