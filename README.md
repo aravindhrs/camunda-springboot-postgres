@@ -7,6 +7,45 @@ This repository is for camunda springboot postgres integration with authorizatio
   - BPMN Models auto deployment enabled
   - Camunda Rest api enabled
   - Camunda Webapps included
+  
+### Implementation
+
+- Main Class (Bootstrap)
+	```sh
+	@SpringBootApplication
+	@EnableProcessApplication
+	public class Application {
+	
+	  public static void main(String[] args) {
+	    SpringApplication.run(Application.class);
+	  }
+	
+	}
+	
+	```
+- Camunda Basic Authentication:
+	```sh
+	@Configuration
+	public class CamundaSecurityFilter {
+
+	  @Bean
+	  public FilterRegistrationBean<Filter> processEngineAuthenticationFilter() {
+	    FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<>();
+	    registration.setName("camunda-auth");
+	    registration.setFilter(getProcessEngineAuthenticationFilter());
+	    registration.addInitParameter("authentication-provider",
+	        "org.camunda.bpm.engine.rest.security.auth.impl.HttpBasicAuthenticationProvider");
+	    registration.addUrlPatterns("/*");
+	    registration.setOrder(1);
+	    return registration;
+	  }
+	
+	  @Bean
+	  public Filter getProcessEngineAuthenticationFilter() {
+	    return new ProcessEngineAuthenticationFilter();
+	  }
+	}
+	```  
 
 ### Pre Requisites
 
