@@ -3,7 +3,7 @@
 # camunda-springboot-postgres
 This repository is for camunda springboot postgres integration with authorization enabled.
 
-  - Camunda Authorization (Baisc auth)
+  - Camunda Authorization (Basic auth)
   - Postgres 11 integrated
   - HikariCP Connection pooling
   - BPMN Models auto deployment enabled
