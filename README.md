@@ -117,8 +117,8 @@ Below softwares need to be installed in the system before running this applicati
       driver-class-name: org.postgresql.Driver
       pool-name: HikariCP
       idle-timeout: 3000
-      minimum-idle: 30
-      maximum-pool-size: 10
+      minimum-idle: 10
+      maximum-pool-size: 20
       connection-timeout: 2000
       connection-test-query: select 1
       transaction-isolation: TRANSACTION_READ_COMMITTED
