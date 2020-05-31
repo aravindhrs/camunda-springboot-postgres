@@ -121,7 +121,7 @@ Below softwares need to be installed in the system before running this applicati
       maximum-pool-size: 10
       connection-timeout: 2000
       connection-test-query: select 1
-      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      transaction-isolation: TRANSACTION_READ_COMMITTED
     camunda:
       bpm:
         enabled: true
