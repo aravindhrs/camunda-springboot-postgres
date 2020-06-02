@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <bpmn:process id="Test-multi-user-approval" name="Test-multi-user-approval" isExecutable="true">
+    <bpmn:userTask id="Approveniceideatt" name="Approve nice ideat990" camunda:asyncBefore="true" camunda:assignee="${assignee}">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1llmycg</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0tvak4s</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="${assigneeList}" camunda:elementVariable="assignee" />
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1llmycg" sourceRef="GenerateAssignees" targetRef="Approveniceideatt" />
+    <bpmn:scriptTask id="GenerateAssignees" name="Generate Assignees1" scriptFormat="javascript">
+      <bpmn:incoming>SequenceFlow_0q23sjj</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1d0thao</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1llmycg</bpmn:outgoing>
+      <bpmn:script>var ArrayList = Java.type("java.util.ArrayList");
+var assigneeList= new ArrayList;
+assigneeList.add("galelio");
+assigneeList.add("hawking");
+
+execution.setVariable("assigneeList", assigneeList);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="EndEvent_03gxqhh" name="Idea Implemented">
+      <bpmn:incoming>SequenceFlow_0tvak4s</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0q23sjj</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1d0thao</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0q23sjj" sourceRef="StartEvent_1" targetRef="GenerateAssignees" />
+    <bpmn:sequenceFlow id="SequenceFlow_1d0thao" sourceRef="StartEvent_1" targetRef="GenerateAssignees" />
+    <bpmn:sequenceFlow id="SequenceFlow_0tvak4s" sourceRef="Approveniceideatt" targetRef="EndEvent_03gxqhh" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Test-multi-user-approval">
+      <bpmndi:BPMNEdge id="SequenceFlow_0tvak4s_di" bpmnElement="SequenceFlow_0tvak4s">
+        <di:waypoint x="510" y="121" />
+        <di:waypoint x="592" y="121" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="551" y="161" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1d0thao_di" bpmnElement="SequenceFlow_1d0thao">
+        <di:waypoint x="192" y="121" />
+        <di:waypoint x="218" y="121" />
+        <di:waypoint x="218" y="121" />
+        <di:waypoint x="249" y="121" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="55" y="165" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0q23sjj_di" bpmnElement="SequenceFlow_0q23sjj">
+        <di:waypoint x="192" y="121" />
+        <di:waypoint x="220" y="121" />
+        <di:waypoint x="220" y="121" />
+        <di:waypoint x="249" y="121" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="59" y="166" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1llmycg_di" bpmnElement="SequenceFlow_1llmycg">
+        <di:waypoint x="349" y="121" />
+        <di:waypoint x="410" y="121" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="265" y="166" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0ngxn3v_di" bpmnElement="Approveniceideatt">
+        <dc:Bounds x="410" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ScriptTask_0jah4xj_di" bpmnElement="GenerateAssignees">
+        <dc:Bounds x="249" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_03gxqhh_di" bpmnElement="EndEvent_03gxqhh">
+        <dc:Bounds x="592" y="103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="566" y="143" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="156" y="103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2" y="190" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
