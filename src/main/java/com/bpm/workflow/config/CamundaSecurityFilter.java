@@ -1,4 +1,4 @@
-package com.example.workflow.config;
+package com.bpm.workflow.config;
 
 import javax.servlet.Filter;
 import org.camunda.bpm.engine.rest.security.auth.ProcessEngineAuthenticationFilter;

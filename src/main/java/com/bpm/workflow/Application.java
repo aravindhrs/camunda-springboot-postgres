@@ -1,4 +1,4 @@
-package com.example.workflow;
+package com.bpm.workflow;
 
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.springframework.boot.SpringApplication;

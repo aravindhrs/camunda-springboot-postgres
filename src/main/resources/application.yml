@@ -5,6 +5,9 @@ spring:
   application:
     name: camundapostgres
     
+  profiles:
+    active: local  
+    
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     
@@ -19,7 +22,7 @@ spring:
       username: postgres
       password: postgres
       driver-class-name: org.postgresql.Driver
-      pool-name: HikariCP
+      pool-name: CAMUNDA-HIKARI-POOL
       idle-timeout: 3000
       minimum-idle: 30
       maximum-pool-size: 10
@@ -30,8 +33,6 @@ spring:
 camunda:
   bpm:
     enabled: true
-    
-    #process-engine-name: andromeda
     
     admin-user:
       id: demo
@@ -59,4 +60,4 @@ camunda:
       enabled: true
       
     webapp:
-      application-path: /camundapostgres      
+      application-path: /camundapostgres

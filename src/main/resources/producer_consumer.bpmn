@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1bhz39y" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.1.1">
+  <bpmn:collaboration id="Collaboration_1sucoq2">
+    <bpmn:participant id="Participant_0b0rc4c" name="Producer Process" processRef="ProducerProcess" />
+    <bpmn:participant id="Participant_0rp6m0l" name="Consumer Process" processRef="ConsumerProcess" />
+    <bpmn:messageFlow id="Flow_1sa7yai" name="Producer sends goods to consumer" sourceRef="Event_0s9hfpd" targetRef="Event_05kf4xy" />
+  </bpmn:collaboration>
+  <bpmn:process id="ProducerProcess" name="Producer Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_1cl4de1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_15yh7ii" name="Producer" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${objectSerializeDelegate}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1cl4de1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cui287</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0s9hfpd" name="Send to Consumer" camunda:asyncBefore="true">
+      <bpmn:incoming>Flow_1cui287</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1o7cnl7" messageRef="Message_0qvz8w9" camunda:delegateExpression="${dispatcherDelegate}" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1cl4de1" sourceRef="StartEvent_1" targetRef="Activity_15yh7ii" />
+    <bpmn:sequenceFlow id="Flow_1cui287" sourceRef="Activity_15yh7ii" targetRef="Event_0s9hfpd" />
+  </bpmn:process>
+  <bpmn:message id="Message_0qvz8w9" name="dispatchGoods" />
+  <bpmn:process id="ConsumerProcess" name="Consumer Process" isExecutable="true">
+    <bpmn:endEvent id="Event_1a9jokj" name="End">
+      <bpmn:incoming>Flow_1gyx2wb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_18j88z5" name="Consumer" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${objectDeserializeDelegate}" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ik1sl5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gyx2wb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="Event_05kf4xy" name="Recieve" camunda:asyncBefore="true" camunda:initiator="user">
+      <bpmn:outgoing>Flow_1ik1sl5</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_06y86sc" messageRef="Message_0qvz8w9" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ik1sl5" sourceRef="Event_05kf4xy" targetRef="Activity_18j88z5" />
+    <bpmn:sequenceFlow id="Flow_1gyx2wb" sourceRef="Activity_18j88z5" targetRef="Event_1a9jokj" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1sucoq2">
+      <bpmndi:BPMNShape id="Participant_0b0rc4c_di" bpmnElement="Participant_0b0rc4c" isHorizontal="true">
+        <dc:Bounds x="160" y="110" width="480" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1cui287_di" bpmnElement="Flow_1cui287">
+        <di:waypoint x="460" y="185" />
+        <di:waypoint x="562" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cl4de1_di" bpmnElement="Flow_1cl4de1">
+        <di:waypoint x="248" y="185" />
+        <di:waypoint x="360" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="212" y="167" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="218" y="210" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1sqiwj4_di" bpmnElement="Activity_15yh7ii">
+        <dc:Bounds x="360" y="145" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1wardbn_di" bpmnElement="Event_0s9hfpd">
+        <dc:Bounds x="562" y="167" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="553" y="129.5" width="53" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_0rp6m0l_di" bpmnElement="Participant_0rp6m0l" isHorizontal="true">
+        <dc:Bounds x="160" y="340" width="480" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1gyx2wb_di" bpmnElement="Flow_1gyx2wb">
+        <di:waypoint x="460" y="430" />
+        <di:waypoint x="562" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ik1sl5_di" bpmnElement="Flow_1ik1sl5">
+        <di:waypoint x="248" y="430" />
+        <di:waypoint x="360" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1a9jokj_di" bpmnElement="Event_1a9jokj">
+        <dc:Bounds x="562" y="412" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="570" y="455" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vzgob8_di" bpmnElement="Activity_18j88z5">
+        <dc:Bounds x="360" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19d8vyp_di" bpmnElement="Event_05kf4xy">
+        <dc:Bounds x="212" y="412" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="211" y="455" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1sa7yai_di" bpmnElement="Flow_1sa7yai">
+        <di:waypoint x="580" y="203" />
+        <di:waypoint x="580" y="308" />
+        <di:waypoint x="230" y="308" />
+        <di:waypoint x="230" y="412" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="161" y="288" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
