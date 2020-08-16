@@ -69,7 +69,7 @@ This repository is for camunda springboot postgres integration with authorizatio
 	</process-application>
 	```	  
 
-### Pre Requisites
+### Pre-Requisites
 
 Below softwares need to be installed in the system before running this application.
 
