@@ -165,3 +165,8 @@ Below softwares need to be installed in the system before running this applicati
     ```sh
     demo/demo
     ```
+    
+- Webapps context-path:
+	```sh
+	/camundapostgres
+	```    
