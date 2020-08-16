@@ -62,6 +62,7 @@ This repository is for camunda springboot postgres integration with authorizatio
 	    <properties>
 	      <property name="isDeleteUponUndeploy">false</property>
 	      <property name="isScanForProcessDefinitions">true</property>
+	      <property name="javaSerializationFormatEnabled">true</property>
 	    </properties>
 	  </process-archive>
 	
