@@ -1,4 +1,4 @@
-![Java CI with Maven](https://github.com/aravindhrs/camunda-springboot-postgres/workflows/Java%20CI%20with%20Maven/badge.svg)
+![Java CI with Maven](https://github.com/aravindhrs/camunda-springboot-postgres/workflows/Java%20CI%20with%20Maven/badge.svg) ![CodeQL](https://github.com/aravindhrs/camunda-springboot-postgres/workflows/CodeQL/badge.svg)
 
 # camunda-springboot-postgres
 This repository is for camunda springboot postgres integration with authorization enabled.
