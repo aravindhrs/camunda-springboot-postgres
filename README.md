@@ -1,4 +1,4 @@
-![Java CI with Maven](https://github.com/aravindhrs/camunda-springboot-postgres/workflows/Java%20CI%20with%20Maven/badge.svg) ![Docker Image CI](https://github.com/aravindhrs/camunda-springboot-postgres/workflows/Docker%20Image%20CI/badge.svg)
+![Java CI with Maven](https://github.com/aravindhrs/camunda-springboot-postgres/workflows/Java%20CI%20with%20Maven/badge.svg)
 
 # camunda-springboot-postgres
 This repository is for camunda springboot postgres integration with authorization enabled.
