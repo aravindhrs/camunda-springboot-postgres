@@ -170,3 +170,7 @@ Below softwares need to be installed in the system before running this applicati
 	```sh
 	/camundapostgres
 	```    
+### For taskworkers:
+   ```
+   https://github.com/aravindhrs/camundataskworker
+   ```
